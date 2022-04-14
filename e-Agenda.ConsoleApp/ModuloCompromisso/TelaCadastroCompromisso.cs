@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using e_Agenda.ConsoleApp.Compartilhado;
+using e_Agenda.ConsoleApp.ModuloContato;
 
 namespace e_Agenda.ConsoleApp.ModuloCompromisso
 {
@@ -12,16 +13,22 @@ namespace e_Agenda.ConsoleApp.ModuloCompromisso
         private readonly RepositorioCompromisso repositorioCompromisso;
         private readonly Notificador notificador;
 
-        public TelaCadastroCompromisso(RepositorioCompromisso repositorioCompromisso, Notificador notificador)
+        RepositorioContato repositorioContato;
+        TelaCadastroContato telaCadastroContato;
+
+        public TelaCadastroCompromisso(RepositorioCompromisso repositorioCompromisso, Notificador notificador, RepositorioContato repositorioContato)
           : base("Cadastro de Compromisso")
         {
             this.repositorioCompromisso = repositorioCompromisso;
             this.notificador = notificador;
+            this.repositorioContato = repositorioContato;
+            this.telaCadastroContato = telaCadastroContato;
         }
 
-        public void Inserir()
-        {
 
+        public void Inserir()
+        {        
+           
         }
         public void Editar()
         {

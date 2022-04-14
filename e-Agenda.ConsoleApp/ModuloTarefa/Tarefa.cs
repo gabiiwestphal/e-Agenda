@@ -13,7 +13,7 @@ namespace e_Agenda.ConsoleApp.ModuloTarefa
         string titulo;
         DateTime dataCriacao;
         DateTime dataConclusao;
-        double percentualConclusão;
+        double percConclusao;
 
         public Tarefa(Prioridade prioridade, string titulo, DateTime dataCriacao, DateTime dataConclusao)
         {
@@ -24,7 +24,7 @@ namespace e_Agenda.ConsoleApp.ModuloTarefa
 
         }
 
-        public double PercentualConclusão { get => percentualConclusão; set => percentualConclusão = value; }
+        public double PercConclusão { get => percConclusao; set => percConclusao = value; }
         public DateTime DataConclusao { get => dataConclusao; set => dataConclusao = value; }
 
         public override string ToString()
@@ -34,7 +34,7 @@ namespace e_Agenda.ConsoleApp.ModuloTarefa
                 $"titulo  {titulo}\n" +
                 $"Data de criação {dataCriacao}\n" +
                 $"data de conclusão {DataConclusao}\n" +
-                $"Percentual de conclusão {percentualConclusão * 100}%";
+                $"Percentual de conclusão {percConclusao * 100}%";
         }
 
         public int CompareTo(Tarefa other)

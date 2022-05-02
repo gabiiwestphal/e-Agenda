@@ -19,25 +19,28 @@ namespace e_Agenda.ConsoleApp.ModuloTarefa
         {
             this.repositorioTarefa = repositorioTarefa;
             this.notificador = notificador;
-        }           
+        }
+
+        public void EditarRegistro()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ExcluirRegistro()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InserirRegistro()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool VisualizarRegistros(string tipo)
+        {
+            throw new NotImplementedException();
+        }
     }
    
-    //public void CadastrarNovaTarefa()
-    //{
-
-    //}
-    //public void AtualizarTarefa()
-    //{
-
-    //}
-    //public void ExcluirTarefa()
-    //{
-
-    //}
-    //public void VisualizarTodasAsTarefas()
-    //{
-
-    //}
-
-
+    
 }

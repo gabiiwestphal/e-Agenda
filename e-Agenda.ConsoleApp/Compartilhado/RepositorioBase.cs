@@ -6,143 +6,78 @@ using System.Threading.Tasks;
 
 namespace e_Agenda.ConsoleApp.Compartilhado
 {
-    public class RepositorioBase<T> where T : EntidadeBase
+    public class RepositorioBase
     {
-        protected readonly List<T> registros;
-        protected List<T> Registros => registros;
-
-        protected int contadorId;
+        protected readonly List<EntidadeBase> registros;
+        protected int contadorNumero = 1;
 
         public RepositorioBase()
         {
-            registros = new List<T>();
+            registros = new List<EntidadeBase>();
         }
 
-        public virtual string Inserir(T entidade)
-        {
-            entidade.id = ++contadorId;
 
+        public virtual void Inserir(EntidadeBase entidade)
+        {
+            entidade.numero = contadorNumero;
             registros.Add(entidade);
-
-            return "REGISTRO_VALIDO";
+            Notificador not = new Notificador();
+            not.apresentarMensagem("Adicionado com sucesso!", TipoMensagem.Sucesso);
+            contadorNumero++;
         }
 
-        public bool Editar(int idSelecionado, T novaEntidade)
+        public void Editar(int numeroSelecionado, EntidadeBase entidade)
         {
-            foreach (T entidade in registros)
+            for (int i = 0; i < registros.Count; i++)
             {
-                if (idSelecionado == entidade.id)
+                if (this.registros[i].numero == numeroSelecionado)
                 {
-                    novaEntidade.id = entidade.id;
+                    entidade.numero = numeroSelecionado;
+                    this.registros[i] = entidade;
 
-                    int posicaoParaEditar = registros.IndexOf(entidade);
-                    registros[posicaoParaEditar] = novaEntidade;
-
-                    return true;
+                    break;
                 }
             }
-
-            return false;
         }
 
-        public bool Editar(Predicate<T> condicao, T novaEntidade)
+        public bool Excluir(int numeroSelecionado)
         {
-            foreach (T entidade in registros)
-            {
-                if (condicao(entidade))
-                {
-                    novaEntidade.id = entidade.id;
+            EntidadeBase entidadeSelecionada = SelecionarRegistro(numeroSelecionado);
 
-                    int posicaoParaEditar = registros.IndexOf(entidade);
-                    registros[posicaoParaEditar] = novaEntidade;
+            if (entidadeSelecionada == null)
+                return false;
 
-                    return true;
-                }
-            }
+            registros.Remove(entidadeSelecionada);
 
-            return false;
+            return true;
         }
 
-        public bool Excluir(int idSelecionado)
+        public EntidadeBase SelecionarRegistro(int numeroRegistro)
         {
-            foreach (T entidade in registros)
-            {
-                if (idSelecionado == entidade.id)
-                {
-                    registros.Remove(entidade);
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public bool Excluir(Predicate<T> condicao)
-        {
-            foreach (T entidade in registros)
-            {
-                if (condicao(entidade))
-                {
-                    registros.Remove(entidade);
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public T SelecionarRegistro(int idSelecionado)
-        {
-            foreach (T entidade in registros)
-            {
-                if (idSelecionado == entidade.id)
-                    return entidade;
-            }
+            foreach (EntidadeBase registro in this.registros)
+                if (numeroRegistro == registro.numero)
+                    return registro;
 
             return null;
         }
 
-        public T SelecionarRegistro(Predicate<T> condicao)
+        public List<EntidadeBase> SelecionarTodos()
         {
-            foreach (T entidade in registros)
-            {
-                if (condicao(entidade))
-                    return entidade;
-            }
+            return this.registros;
 
-            return null;
         }
 
-        public List<T> SelecionarTodos()
+        public bool ExisteRegistro(int numeroRegistro)
         {
-            return registros;
-        }
+            foreach (EntidadeBase registro in this.registros)
 
-        public List<T> Filtrar(Predicate<T> condicao)
-        {
-            List<T> registrosFiltrados = new List<T>();
-
-            foreach (T registro in registros)
-                if (condicao(registro))
-                    registrosFiltrados.Add(registro);
-
-            return registrosFiltrados;
-        }
-
-        public bool ExisteRegistro(int idSelecionado)
-        {
-            foreach (T entidade in registros)
-                if (idSelecionado == entidade.id)
+                if (registro.numero == numeroRegistro)
                     return true;
 
-            return false;
-        }
-
-        public bool ExisteRegistro(Predicate<T> condicao)
-        {
-            foreach (T entidade in registros)
-                if (condicao(entidade))
-                    return true;
 
             return false;
+
         }
+
     }
 }

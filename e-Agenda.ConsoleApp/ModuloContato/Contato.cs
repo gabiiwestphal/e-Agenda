@@ -9,24 +9,39 @@ namespace e_Agenda.ConsoleApp.ModuloContato
 {
     public class Contato : EntidadeBase
     {
-        public string Nome { get; set; }
+        private readonly string nome;
+        private readonly string email;
+        private readonly string telefone;
+        private readonly string empresa;
+        private readonly string cargo;
 
-        public string Email { get; set; }
+        public Contato(string nome, string email, string telefone, string empresa, string cargo)
+        {
+            this.nome = nome;
+            this.email = email;
+            this.telefone = telefone;
+            this.empresa = empresa;
+            this.cargo = cargo;
+        }
 
-        public string Telefone { get; set; }
+        public string Nome => nome;
 
-        public string Empresa { get; set; }
+        public string Email => email;
 
-        public string Cargo { get; set; }
+        public string Telefone => telefone;
+
+        public string Empresa => empresa;
+
+        public string Cargo => cargo;
 
         public override string ToString()
         {
-            return
+            return "Número: " + numero + Environment.NewLine +
             "Nome: " + Nome + Environment.NewLine +
-            "Email: " + Email + Environment.NewLine +
-            "Telefone: " + Telefone + Environment.NewLine +
-            "Empresa: " + Empresa + "%" + Environment.NewLine +
-            "Cargo: " + Cargo;
+            "Email: " + email + Environment.NewLine +
+            "Telefone: " + telefone + Environment.NewLine +
+            "Empresa:" + empresa + Environment.NewLine +
+            "Cargo:" + cargo + Environment.NewLine;
         }
 
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace e_Agenda.ConsoleApp.Compartilhado
 {
-    public abstract class TelaBase
+    public class TelaBase
     {
         protected string Titulo { get; set; }
 
@@ -14,6 +14,8 @@ namespace e_Agenda.ConsoleApp.Compartilhado
         {
             Titulo = titulo;
         }
+
+
         public virtual string MostrarOpcoes()
         {
             MostrarTitulo(Titulo);
@@ -29,6 +31,8 @@ namespace e_Agenda.ConsoleApp.Compartilhado
 
             return opcao;
         }
+
+
         protected void MostrarTitulo(string titulo)
         {
             Console.Clear();
@@ -37,6 +41,7 @@ namespace e_Agenda.ConsoleApp.Compartilhado
 
             Console.WriteLine();
         }
+
 
     }
 }

@@ -7,7 +7,12 @@ using e_Agenda.ConsoleApp.Compartilhado;
 
 namespace e_Agenda.ConsoleApp.ModuloTarefa
 {
-    internal class RepositorioTarefa
+    public class RepositorioTarefa : RepositorioBase
     {
+        public RepositorioTarefa()
+        {
+
+        }
+
     }
 }

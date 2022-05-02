@@ -8,13 +8,9 @@ namespace e_Agenda.ConsoleApp.Compartilhado
 {
     public interface ITelaCadastravel
     {
-        public interface ITelaCadastravel
-        {
-            void Inserir();
-            void Editar();
-            void Excluir();
-            void Vizualizar();
-            string MostrarOpcoes();
-        }
+        void InserirRegistro();
+        void EditarRegistro();
+        void ExcluirRegistro();
+        bool VisualizarRegistros(string tipo);
     }
 }

@@ -8,7 +8,7 @@ namespace e_Agenda.ConsoleApp.Compartilhado
 {
     public class Notificador
     {
-        public void ApresentarMensagem(string mensagem, TipoMensagem tipoMensagem)
+        public void apresentarMensagem(string mensagem, TipoMensagem tipoMensagem)
         {
             switch (tipoMensagem)
             {
@@ -32,6 +32,7 @@ namespace e_Agenda.ConsoleApp.Compartilhado
             Console.WriteLine(mensagem);
             Console.ResetColor();
             Console.ReadLine();
+
         }
     }
 }

@@ -13,6 +13,10 @@ namespace e_Agenda.ConsoleApp.Compartilhado
     {
         private string opcaoSelecionada;
 
+        private const int QUANTIDADE_REGISTROS = 10;
+
+        private Notificador notificador;
+
         private RepositorioTarefa repositorioTarefa;
         private TelaCadastroTarefa telaCadastroTarefa;
 
@@ -24,6 +28,8 @@ namespace e_Agenda.ConsoleApp.Compartilhado
 
         public TelaMenuPrincipal(Notificador notificador)
         {
+            this.notificador = notificador;
+
             repositorioTarefa = new RepositorioTarefa();
             telaCadastroTarefa = new TelaCadastroTarefa(repositorioTarefa, notificador);
 
@@ -31,45 +37,54 @@ namespace e_Agenda.ConsoleApp.Compartilhado
             telaCadastroContato = new TelaCadastroContato(repositorioContato, notificador);
 
             repositorioCompromisso = new RepositorioCompromisso();
-            telaCadastroCompromisso = new TelaCadastroCompromisso(repositorioCompromisso, notificador);
+            telaCadastroCompromisso = new TelaCadastroCompromisso(telaCadastroContato, repositorioContato, repositorioCompromisso, notificador);
+
         }
 
         public string MostrarOpcoes()
         {
             Console.Clear();
 
-            Console.WriteLine("eAgenda");
+            Console.WriteLine("E - Agenda 1.0");
 
-            Console.WriteLine("Digite 1 para Gerenciar Tarefas");
+            Console.WriteLine();
 
-            Console.WriteLine("Digite 2 para Gerenciar Contatos");
-
-            Console.WriteLine("Digite 3 para Gerenciar Compromissos");
+            Console.WriteLine("Digite 1 para Cadastrar Tarefas");
+            Console.WriteLine("Digite 2 para Cadastrar Contatos");
+            Console.WriteLine("Digite 3 para cadastrar Compromissos");
 
             Console.WriteLine("Digite s para sair");
 
-            string opcaoSelecionada = Console.ReadLine();
+            opcaoSelecionada = Console.ReadLine();
 
             return opcaoSelecionada;
         }
 
-        public TelaBase ObterTela()
+        public TelaBase obterTela()
         {
             string opcao = MostrarOpcoes();
 
             TelaBase tela = null;
 
-            if (opcao == "1")
-                tela = telaCadastroTarefa;
+            switch (opcao)
+            {
+                case "1":
+                    tela = telaCadastroTarefa;
+                    break;
 
-            if (opcao == "2")
-                tela = telaCadastroContato;
+                case "2":
+                    tela = telaCadastroContato;
+                    break;
 
-            if (opcao == "3")
-                tela = telaCadastroCompromisso;
+                case "3":
+                    tela = telaCadastroCompromisso;
+                    break;
+
+            }
 
             return tela;
         }
+
     }
 }
 
